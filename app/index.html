@@ -15,6 +15,7 @@
 
     <!-- build:css styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
+    <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
     <!-- endbuild -->
 
     <!-- build:js scripts/vendor/modernizr.js -->
@@ -22,29 +23,42 @@
     <!-- endbuild -->
   </head>
   <body>
-
-    <div class="hero-unit">
-      <h1>'Allo, 'Allo!</h1>
-      <p>You now have</p>
-      <ul>
-        <li>HTML5 Boilerplate</li>
-        <li>Normalize CSS</li>
-
-        <li>Sass</li>
-
-
-        <li>Modernizr</li>
-
-
-        <li>Bourbon & Neat</li>
-
-
-        <li>UnderscoreJS</li>
-
-      </ul>
-      <p>Don't forget to update your readme file!!</p>
+    <div class="wrapper">
+        <div class="logo">
+            <h1>My Turn Base Game</h1>
+        </div>
     </div>
+    <div class="main">
 
+        <!-- Player -->
+  
+
+        <h2>Choose a painter!</h2>
+
+
+        <form method="post">
+            <select id="artists" name="Artists">
+                <option value="monet">Claude Monet</option>
+                <option value="ross">Bob Ross</option>
+                <option value="warhol">Andy Warhol</option>
+            </select>
+        </form>
+     
+        <div class="player">
+          <input type="text" id="playerHealth" value="100" />
+        </div>
+        
+        <button id="mixer">Stir the paint!</button>
+
+      
+
+        <!-- Monster -->
+        <div class="mixture">
+          <input class="score" type="text" value="100" />
+        </div>
+
+
+    </div><!--end of main-->
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
     <script src="../bower_components/jquery/dist/jquery.js"></script>
