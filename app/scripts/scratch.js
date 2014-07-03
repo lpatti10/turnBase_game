@@ -1,13 +1,15 @@
 //////////////////// VARIABLES /////////////////////////////////////////
 
 // Establishing player-related variables
-var playerHealth = $('#playerHealth'),
-    attackBTN = $('#personAttack'),
+var playerHealth = $("#playerHealth"),
+    attackBTN = $("#personAttack"),
     damage;
 
+var hero = $(".player1");
+
 // Establishing monster-related variables
-var joker = $('.monster1');
-var beast = $('.monster2');
+var joker = $(".monster1");
+var beast = $(".monster2");
 
 //////////////////// CONSTRUCTORS /////////////////////////////////////////
 
@@ -16,10 +18,10 @@ var Player = function (options) {
   var options = options || {};
   this.name = options.name;
   this.health = options.health;
+  this.elem = options.elem;
   this.attack = function (target) {
     process_attack(this, target);
   };
-  this.elem = options.elem;
 };
 
 // Monster Constructor
@@ -47,7 +49,8 @@ var Monster = function (options) {
 // Player Instance
 var hero = new Player ({
 	name: 'THE HERO',
-	health: 100
+	health: 100,
+	elem: $('.player1')
 });
 
 
@@ -60,7 +63,7 @@ var joker = new Monster ({
 
 var beast = new Monster ({
 	name: 'THE BEAST',
-  health: 75,
+  health: 95,
   elem: $('.monster2')
 });
 
