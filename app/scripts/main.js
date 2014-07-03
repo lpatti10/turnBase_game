@@ -52,7 +52,7 @@ var Painter = function (options) {
 var Mixture = function (options) {
   var options = options || {};
   this.name = options.name;
-  this.health = 100;
+  this.health = 50;
   this.elem = options.elem;
 };
 
@@ -152,26 +152,26 @@ var process_attack = function (attacker, attackee) {
     // Update the individual attacked's health visually
     attackee.elem.find('input').val(attackee.health);
   
-    // When we attack a monster, he fights back, ids win or lose
+    // When we attack a monster, he fights back = win or lose
     if (attackee instanceof Mixture) {
       console.log('Please wait while we mix your new color.');
       mixerBTN.prop('disabled', true).text('Mixing new color...');
-      _.delay(process_attack, 1000, attackee, attacker);
+      _.delay(process_attack, 500, attackee, attacker);
 
       $("#mixer").on("click", function(){
-      $(this).addClass("orange");
-      // $(elem).css('background-color' rgb(255, 1, 3));
+      // $(this).addClass("orange");
+      $(this).css('background-color', rgb(255, 10, 30));
   });
     }
 
   } else {
 
     if (attackee instanceof Painter) {
-      // You Loose!!
-      $('body').empty().css('background', 'url(http://goo.gl/0fmNnb)');
+      // Andy!
+      $('body').empty().css('background', 'url(images/andy-warhol.jpg)');
     } else {
-      // You Win!!
-      $('body').empty().css('background', 'url(http://goo.gl/zeyWpy)');
+      // Bob!
+      $('body').empty().css('background', 'url(images/bob-ross.jpg)');
     }
 
   }
