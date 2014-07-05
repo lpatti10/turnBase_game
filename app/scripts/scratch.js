@@ -113,20 +113,22 @@ var process_attack = function (attacker, attackee) {
     if (attackee instanceof Monster) {
       console.log('You were attacked back');
       attackBTN.prop('disabled', true).text('Defending...');
-      _.delay(process_attack, 1000, attackee, attacker);
+      _.delay(process_attack, 500, attackee, attacker);
     }
 
   } else {
 
     if (attackee instanceof Player) {
-      // You Loose!!
-      $('body').empty().css('background', 'url('images/brick.jpg')');
-      alert("Now you're soaring.");
+      // You Lose!!
+      // $('body').empty().css('background', 'url(images/brick.jpg)');
+       $( "#loseResult" ).add("h2").html("You lose :(").animate({
+        fontSize: "10em",
+        }, 500 );
     } else {
       // You Win!!
-      $('body').empty().css('background', 'url('images/brick.jpg')');
-      alert("You seem to have hit a wall.");
-
+      $( "#winResult" ).add("h2").html("You win ;)").animate({
+        fontSize: "10em",
+        }, 500 );
     }
 
   }

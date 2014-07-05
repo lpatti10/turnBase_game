@@ -1,144 +1,89 @@
-/*
-  ___      _             
- / __| ___| |_ _  _ _ __ 
- \__ \/ -_)  _| || | '_ \
- |___/\___|\__|\_,_| .__/
-                   |_|   
-*/
-// onChange linked to dropdown to update variables
+// VARIABLES 
 
-
-// Setup Vars & Player Elements
-var playerHealth = $('#playerHealth'),
-    mixerBTN = $('#mixer'),
+// Establishing player-related variables
+var playerHealth = $("#playerHealth"),
+    attackBTN = $("#personAttack"),
     damage;
 
-/*
-   ___             _               _              
-  / __|___ _ _  __| |_ _ _ _  _ __| |_ ___ _ _ ___
- | (__/ _ \ ' \(_-<  _| '_| || / _|  _/ _ \ '_(_-<
-  \___\___/_||_/__/\__|_|  \_,_\__|\__\___/_| /__/
-*/
+var hero = $(".player1");
 
-// Player Constructor
-// var Player = function (options) {
-//   var options = options || {};
-//   this.name = options.name;
-//   this.health = 100;
-//   this.attack = function (target) {
-//     process_attack(this, target);
-//   };
-//   this.elem = options.elem;
-// };
+// Establishing monster-related variables
+var joker = $(".monster1");
+var beast = $(".monster2");
 
-var Painter = function (options) {
+//CONSTRUCTORS 
+
+// Player Constructor is a blueprint of properties on an object...always Capitalized.
+var Player = function (options) {
   var options = options || {};
   this.name = options.name;
   this.health = options.health;
+  this.elem = options.elem;
   this.attack = function (target) {
     process_attack(this, target);
   };
-  this.elem = options.elem;
 };
 
 // Monster Constructor
-// var Monster = function (options) {
-//   var options = options || {};
-//   this.name = options.name;
-//   this.health = 100;
-//   this.elem = options.elem;
-// };
-
-var Mixture = function (options) {
+var Monster = function (options) {
   var options = options || {};
   this.name = options.name;
-  this.health = 50;
+  this.health = options.health;
   this.elem = options.elem;
 };
 
-/*
-  ___         _                       
- |_ _|_ _  __| |_ __ _ _ _  __ ___ ___
-  | || ' \(_-<  _/ _` | ' \/ _/ -_|_-<
- |___|_||_/__/\__\__,_|_||_\__\___/__/
-*/
+// INSTANCES
 
 // Player Instance
-// var ryu = new Player ({ 
-//   name: 'Ryu',
-//   elem: $('.player')
-// });
-var monet = new Painter ({ 
-  name: 'Claude Monet',
-  health: 80
+var hero = new Player ({
+	name: 'THE HERO',
+	health: 100,
+	elem: $('.player1')
 });
 
-var ross = new Painter ({ 
-  name: 'Bob Ross',
-  health: 60
-});
-
-var warhol = new Painter ({ 
-  name: 'Andy Warhol',
-  health: 30
-});
 
 // Monster Instances
-// var rickRoss = new Monster ({
-//   name: 'Rick Ross',
-//   elem: $('.monster')
-// });
-
-var redDrop = new Mixture ({
-  name: 'Red Drop',
-  elem: $('.mixture')
+var joker = new Monster ({
+  name: 'THE JOKER',
+  health: 25,
+  elem: $('.monster1')
 });
 
-var greenDrop = new Mixture ({
-  name: 'Green Drop',
-  elem: $('.mixture')
+var beast = new Monster ({
+	name: 'THE BEAST',
+  health: 95,
+  elem: $('.monster2')
 });
 
-var blueDrop = new Mixture ({
-  name: 'Blue Drop',
-  elem: $('.mixture')
-});
-
-/*
-    _      _   _             
-   /_\  __| |_(_)___ _ _  ___
-  / _ \/ _|  _| / _ \ ' \(_-<
- /_/ \_\__|\__|_\___/_||_/__/
-                             
-*/
-
+// ACTIONS 
 
 // Player Attack Action
-// attackBTN.on('click', function () {
-//   ryu.attack(rickRoss);
-// });
-
-mixerBTN.on('click', function () {
-  monet.attack(redDrop);
+var count = 0;
+attackBTN.on('click', function () {
+	count++;
+	console.log("I'm counting your clicks")
+    //even odd click detect 
+    var isEven = function(someNumber) {
+      return (someNumber % 2 === 0) ? true : false;
+ 		};
+    // on odd clicks do this
+    if (isEven(count) === false) {
+      hero.attack(beast);
+    }
+    // on even clicks do this
+    else if (isEven(count) === true) {
+    	hero.attack(joker);
+    }
 });
 
-//Linking drop down to health values
-$('#artists').on('change', function (){
-  
-  alert( $(this).val() );
-  
-  if ($(this).val() == 1){
-    this.health
-  }
-  
-});
+
 
 // Function to attack a Monster
 // This function should be broken down a little bit more, but you get the point.
 var process_attack = function (attacker, attackee) {
 
   // Reset our Attack Button
-  mixerBTN.prop('disabled', false).text('Stir the paint!');
+  attackBTN.prop('disabled', false).text('Attack');
 
   // Generate a new damage value each time
   damage = _.random(5, 20);
@@ -152,27 +97,26 @@ var process_attack = function (attacker, attackee) {
     // Update the individual attacked's health visually
     attackee.elem.find('input').val(attackee.health);
   
-    // When we attack a monster, he fights back = win or lose
-    if (attackee instanceof Mixture) {
-      console.log('Please wait while we mix your new color.');
-      mixerBTN.prop('disabled', true).text('Mixing new color...');
+    // When we attack a monster, he fights back
+    if (attackee instanceof Monster) {
+      console.log('You were attacked back');
+      attackBTN.prop('disabled', true).text('Defending...');
       _.delay(process_attack, 500, attackee, attacker);
-
-      $("#mixer").on("click", function(){
-      // $(this).addClass("orange");
-      $(this).css('background-color', rgb(255, 10, 30));
-  });
     }
 
   } else {
 
-    if (attackee instanceof Painter) {
-      // Andy!
-      $('body').empty().css('background', 'url(images/andy-warhol.jpg)');
+    if (attackee instanceof Player) {
+      // You Lose!!
+      // $('body').empty().css('background', 'url(images/brick.jpg)');
+       $( "#loseResult" ).add("h2").html("You lose :(").animate({
+        fontSize: "10em",
+        }, 500 );
     } else {
-      // Bob!
-      $('body').empty().css('background', 'url(images/bob-ross.jpg)');
+      // You Win!!
+      $( "#winResult" ).add("h2").html("You win ;)").animate({
+        fontSize: "10em",
+        }, 500 );
     }
-
   }
 };

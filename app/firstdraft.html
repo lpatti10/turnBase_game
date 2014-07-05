@@ -13,10 +13,9 @@
     <!-- endbower -->
     <!-- endbuild -->
 
-    <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
-
     <!-- build:css styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
+    <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
     <!-- endbuild -->
 
     <!-- build:js scripts/vendor/modernizr.js -->
@@ -31,6 +30,10 @@
     </div>
     <div class="main">
 
+        <!-- Player -->
+  
+
+       
         <div class="player1">
           THE HERO
           <input type="text" id="playerHealth" value="100" />
@@ -47,22 +50,43 @@
           THE BEAST
           <input type="text" value="95" />
         </div>
+<!--
+        <h2>Choose a painter!</h2>
 
+
+        <form method="post">
+            <select id="artists" name="Artists">
+                <option value="Claude wants to add red.">Claude Monet</option>
+                <option value="Bob wants to add green.">Bob Ross</option>
+                <option value="Andy wants to add blue.">Andy Warhol</option>
+            </select>
+        </form>
+     
+       <!--  <div class="player">
+          <input type="text" id="playerHealth" value="100" />
+        </div> 
+        
+        <button id="mixer">Stir the paint!</button>
+
+
+
+        <!-- Monster 
+        <div class="monster">
+          <input class="score" type="text" value="100" />
+        </div>
+   -->
 
     </div><!--end of main-->
-
-    <div id="winResult">&nbsp;</div>
-    <div id="loseResult">&nbsp;</div>
-
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
     <script src="../bower_components/jquery/dist/jquery.js"></script>
     <script src="../bower_components/underscore/underscore.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
+        <script src="scripts/scratch.js"></script>
 
         <!-- build:js scripts/main.js -->
-        <script src="scripts/main.js"></script>
+     <script src="scripts/main.js"></script>
         <!-- endbuild -->
 </body>
 </html>
