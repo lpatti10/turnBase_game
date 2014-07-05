@@ -120,10 +120,13 @@ var process_attack = function (attacker, attackee) {
 
     if (attackee instanceof Player) {
       // You Loose!!
-      $('body').empty().css('background', 'url(http://goo.gl/0fmNnb)');
+      $('body').empty().css('background', 'url('images/brick.jpg')');
+      alert("Now you're soaring.");
     } else {
       // You Win!!
-      $('body').empty().css('background', 'url(http://goo.gl/zeyWpy)');
+      $('body').empty().css('background', 'url('images/brick.jpg')');
+      alert("You seem to have hit a wall.");
+
     }
 
   }

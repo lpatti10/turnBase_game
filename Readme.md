@@ -16,3 +16,5 @@ Make it pretty!! Not looking for a masterpiece but add some flair!
 Note: This needs to be on GH Pages or on Heroku - so it will be created as a Yeoman app.
 
 Example: http://goo.gl/7aI1Kk
+
+More Help from Tim: https://gist.github.com/twhitacre/421689aa6e8d2bb2453f
