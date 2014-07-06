@@ -109,14 +109,23 @@ var process_attack = function (attacker, attackee) {
     if (attackee instanceof Player) {
       // You Lose!!
       // $('body').empty().css('background', 'url(images/brick.jpg)');
-       $( "#loseResult" ).add("h2").html("You lose :(").animate({
+      // $(this).hide("#personAttack")
+      $( "#loseResult" ).add("h2").html("You lose :(").animate({
         fontSize: "10em",
-        }, 500 );
+      }, 500 );
+       $( "#logo" ).animate({
+        height: "-1000px"
+        }, 1000 );
     } else {
       // You Win!!
+      // $(this).hide("#personAttack")
       $( "#winResult" ).add("h2").html("You win ;)").animate({
         fontSize: "10em",
         }, 500 );
+      $( "#logo" ).animate({
+        scale: "1000px"
+        }, 1000 );
+      // $('body').empty().css('background', 'url(images/supermario2.jpg)');
     }
   }
 };
