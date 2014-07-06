@@ -17,6 +17,7 @@ var beast = $(".monster2");
 var Player = function (options) {
   var options = options || {};
   this.name = options.name;
+  this.skill = options.skill;
   this.health = options.health;
   this.elem = options.elem;
   this.attack = function (target) {
@@ -37,15 +38,22 @@ var Monster = function (options) {
 // Player Instance
 var hero = new Player ({
 	name: 'MARIO',
+  skill: 5,
 	health: 100,
 	elem: $('.player1')
 });
 
+var apprentice = new Player ({
+  name: 'LUIGI',
+  skill: 3,
+  health: 50,
+  elem: $('.player2')
+});
 
 // Monster Instances
 var joker = new Monster ({
   name: 'GOOMBA',
-  health: 25,
+  health: 65,
   elem: $('.monster1')
 });
 
@@ -85,8 +93,14 @@ var process_attack = function (attacker, attackee) {
   // Reset our Attack Button
   attackBTN.prop('disabled', false).text('Attack');
 
+  // Attempted to animate Mario upon delay
+  // attackBTN.prop('disabled', false).animate('#logo'){scale: "1000px"
+  //       }, 1000 );
+
+        
+  
   // Generate a new damage value each time
-  damage = _.random(5, 20);
+  damage = _.random(1, 20);
 
   // Lower the attackee's health
   attackee.health -= damage;
@@ -100,7 +114,7 @@ var process_attack = function (attacker, attackee) {
     // When we attack a monster, he fights back
     if (attackee instanceof Monster) {
       console.log('You were attacked back');
-      attackBTN.prop('disabled', true).text('Defending...');
+      attackBTN.prop('disabled', true);
       _.delay(process_attack, 500, attackee, attacker);
     }
 
@@ -108,23 +122,29 @@ var process_attack = function (attacker, attackee) {
 
     if (attackee instanceof Player) {
       // You Lose!!
-      // $('body').empty().css('background', 'url(images/brick.jpg)');
-      // $(this).hide("#personAttack")
-      $( "#loseResult" ).add("h2").html("You lose :(").animate({
+      $( "#personAttack" ).hide();
+      $( ".monster1" ).hide();
+      $( ".monster2" ).hide();
+
+      $( "#loseResult" ).add("h2").html("You lose :(").css("padding-top", "50px").animate({
         fontSize: "10em",
       }, 500 );
        $( "#logo" ).animate({
-        height: "-1000px"
+        top: "1000px"
         }, 1000 );
     } else {
       // You Win!!
-      // $(this).hide("#personAttack")
-      $( "#winResult" ).add("h2").html("You win ;)").animate({
+      $( "#personAttack" ).hide();
+      $( ".monster1" ).hide();
+      $( ".monster2" ).hide();
+
+      $( "#winResult" ).add("h2").html("You win ;)").css("padding-top", "50px").animate({
         fontSize: "10em",
         }, 500 );
-      $( "#logo" ).animate({
-        scale: "1000px"
-        }, 1000 );
+        
+      $( "#mario" ).animate({
+        width: "1000%"
+        }, 5000 );
       // $('body').empty().css('background', 'url(images/supermario2.jpg)');
     }
   }

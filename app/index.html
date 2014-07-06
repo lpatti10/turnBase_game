@@ -25,8 +25,10 @@
     <!-- endbuild -->
   </head>
   <body>
+ 
+
       <div id="logo">
-        <img src="images/mario_lg.png" />
+        <img src="images/mario_lg.png" id="mario"/>
       </div>
 
     <div>
@@ -38,14 +40,17 @@
           MARIO
           <input type="text" id="playerHealth" value="100" />
         </div>
+
+        <div id="winResult">&nbsp;</div>
+        <div id="loseResult">&nbsp;</div>
+        
         <div id="controller">
             <img src="images/controller.png" id="personAttack"/>
         </div>
-<!--         <button id="personAttack">&nbsp;</button>
- -->
+ 
         <div class="monster1">
           GOOMBA 
-          <input type="text" value="25" />
+          <input type="text" value="65" />
          </div>
 
         <div class="monster2">
@@ -56,8 +61,7 @@
 
     </div><!--end of main-->
 
-    <div id="winResult">&nbsp;</div>
-    <div id="loseResult">&nbsp;</div>
+ 
 
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
